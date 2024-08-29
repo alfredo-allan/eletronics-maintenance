@@ -1,0 +1,200 @@
+body,
+html {
+  font-family: "New Amsterdam", sans-serif;
+  font-style: normal;
+  background-color: #212529;
+  color: #f8f9fa; /* Cor do texto clara */
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: #0d6dfd54; /* Cor do texto ao passar o mouse (exemplo: laranja) */
+}
+
+.navbar-brand {
+  color: #0d6efd;
+  font-size: 20px;
+  letter-spacing: 2px;
+  transition: color 0.3s ease; /* Adiciona uma transição suave */
+  text-decoration: none; /* Remove o sublinhado do link */
+}
+.navbar-brand:hover {
+  color: #0d6dfd54; /* Cor do texto ao passar o mouse (exemplo: laranja) */
+}
+.nav-link.active {
+  color: #0d6dfd54; /* Cor do texto quando o link está ativo */
+  background-color: #0d6dfd54; /* Cor de fundo quando o link está ativo */
+  border: 1px solid #0d6efd; /* Bordas quando o link está ativo */
+  border-radius: 4px; /* Deixe as bordas arredondadas, se desejar */
+}
+
+/* Quando o link está em foco ou é clicado */
+.nav-link:focus,
+.nav-link.active:focus,
+.nav-link:hover,
+.nav-link.active:hover {
+  color: white; /* Cor do texto ao passar o mouse ou focar */
+  background-color: #0d6dfd54; /* Cor de fundo quando o link está ativo */
+  border: 1px solid white; /* Bordas ao passar o mouse ou focar */
+  border-radius: 4px; /* Bordas arredondadas */
+}
+
+#btn,
+#btn-imprimir {
+  width: 80px;
+  height: 35px;
+  border-radius: 9px;
+  background-color: #0d6efd;
+  border: none;
+  color: white;
+  letter-spacing: 2px;
+  font-weight: 200;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 60px;
+}
+
+#btn:active {
+  background-color: #0d6dfd54;
+  transform: scale(0.95); /* Efeito de clique visual */
+}
+
+#btn:focus {
+  outline: none; /* Remove a borda padrão do foco */
+  box-shadow: 0 0 0 3px #0d6dfd54; /* Adiciona uma sombra ao foco para acessibilidade */
+}
+
+.form-control,
+.form-control:focus {
+  background-color: #343a40; /* Cor de fundo dos inputs */
+  color: #f8f9fa; /* Cor do texto nos inputs */
+  border-color: #495057; /* Borda dos inputs */
+}
+
+.form-label {
+  color: #f8f9fa; /* Cor dos rótulos dos inputs */
+}
+
+.navbar-toggler {
+  border: none; /* Remove a borda padrão do botão */
+  padding: 0; /* Remove o padding para ajustar o tamanho do botão */
+}
+
+.navbar-toggler img {
+  display: block; /* Remove o espaçamento extra ao redor da imagem */
+  border: none; /* Remove a borda da imagem */
+}
+
+.navbar-toggler:focus {
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Estilo personalizado para o footer */
+.footer {
+  background-color: #00178005; /* Cor verde para o fundo */
+  color: white; /* Cor branca para o texto */
+  padding: 20px 0; /* Espaçamento interno no topo e na base */
+  margin-top: auto; /* Mantém o footer no fim da página */
+  padding: 20px 0; /* Espaçamento interno no topo e na base */
+}
+
+.footer a {
+  color: white; /* Links com cor branca */
+  text-decoration: none; /* Remove sublinhado dos links */
+}
+
+.footer a:hover {
+  text-decoration: underline; /* Sublinhado ao passar o mouse */
+}
+
+.col-md-4 {
+  text-wrap: nowrap;
+  text-align: justify;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+#cds-cli {
+  width: 80%;
+}
+
+@media (min-width: 1200px) {
+  .col-md-3 {
+    flex: 0 0 auto;
+    display: grid;
+    width: 75%;
+    margin: 0px 227px;
+  }
+}
+
+#show-btn {
+  width: 80%;
+  height: 40px;
+  border-radius: 9px;
+  background-color: #0d6efd;
+  border: none;
+  color: white;
+  letter-spacing: 2px;
+  font-weight: 200;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 60px;
+  margin-bottom: 15px;
+}
+
+.modal-content {
+  background-color: #212529;
+}
+
+#tipoGuia {
+  background-color: #343a40;
+  color: white;
+}
+
+.form-select:focus {
+  color: #212529;
+}
+
+.btn-caixa,
+.btn-comprovante {
+  width: 50%;
+  height: 40px;
+  border-radius: 9px;
+  background-color: #0d6efd;
+  border: none;
+  color: white;
+  letter-spacing: 2px;
+  font-weight: 200;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 15px;
+}
+
+@media (min-width: 1200px) {
+  #ctn-btn {
+    display: grid;
+    margin: 25px 545px;
+    max-width: 80%;
+    box-sizing: border-box;
+  }
+}
+@media (min-width: 1200px) {
+  #btn-mcaixa {
+    width: 60%;
+  }
+  #mdl-btn {
+    width: 30%;
+    margin: 0px 817px;
+  }
+}

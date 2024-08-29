@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Header Responsivo</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/mobile.css" />
+    <style>
+      .modal-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        color: var(--bs-modal-color);
+        pointer-events: auto;
+        background-color: #343a40; /* Nova cor de fundo */
+        background-clip: padding-box;
+        border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+        border-radius: var(--bs-modal-border-radius);
+        outline: 0;
+      }
+      body,
+      html {
+        overflow-x: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="navbar navbar-expand-lg navbar-light bg-dark">
+      <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#"> Electronics Maintenance</a>
+
+        <!-- Botão para telas menores -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          style="border: none"
+        >
+          <img src="../img/hamburger.png" alt="" style="width: 30px" />
+        </button>
+        <!-- Itens do menu -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="../index.html"
+                >Home</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="areadocliente.html">Area Do Cliente</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Orçamento</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./caixa.html">Caixa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./faturamento.htmlS">Faturamento</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <div class="container-fluid" id="ctn-btn">
+      <button
+        type="button"
+        class="btn-comprovante"
+        data-bs-toggle="modal"
+        data-bs-target="#comprovanteModal"
+        id="modal-cli"
+      >
+        Gerar Comprovante
+      </button>
+    </div>
+
+    <!-- Modal para gerar comprovantes -->
+    <div
+      class="modal fade"
+      id="comprovanteModal"
+      tabindex="-1"
+      aria-labelledby="comprovanteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="comprovanteModalLabel">
+              Gerar Comprovante
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              onclick="redirectAfterClose()"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="comprovanteForm">
+              <div class="mb-3">
+                <label for="tipoGuia" class="form-label">Tipo de Guia</label>
+                <select
+                  class="form-select"
+                  id="tipoGuia"
+                  name="tipoGuia"
+                  required
+                >
+                  <option value="orcamento">Cliente orcamento</option>
+                </select>
+              </div>
+
+              <!-- Dados para Clientes orcamentos -->
+              <div id="orcamentoFields">
+                <div class="mb-3">
+                  <label for="comprovanteOrcamento" class="form-label"
+                    >Numero de Registro</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="comprovanteOrcamento"
+                    name="comprovanteOrcamento"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="dataOrcamento" class="form-label"
+                    >Data Registro</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="dataOrcamento"
+                    name="dataOrcamento"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="clienteOrcamento" class="form-label"
+                    >Nome do Cliente</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="clienteOrcamento"
+                    name="clienteOrcamento"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="telefoneOrcamento" class="form-label"
+                    >Telefone do Cliente</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="telefoneOrcamento"
+                    name="telefoneOrcamento"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="cpfOrcamento" class="form-label"
+                    >Cpf Do Cliente</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cpfOrcamento"
+                    name="cpfOrcamento"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="cepOrcamento" class="form-label"
+                    >CEP Do Cliente</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cepOrcamento"
+                    name="cepforcamento"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="ruaOrcamento" class="form-label">Rua</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="ruaOrcamento"
+                    name="ruaOrcamento"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="numeroOrcamento" class="form-label">Numero</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="numeroOrcamento"
+                    name="numeroOrcamento"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="bairroOrcamento" class="form-label">Bairro</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="bairroOrcamento"
+                    name="bairroOrcamento"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="cidadeOrcamento" class="form-label">Cidade</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cidadeOrcamento"
+                    name="cidadeOrcamento"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="ufOrcamento" class="form-label">UF</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="ufOrcamento"
+                    name="ufOrcamento"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="descricaoOrcamento"
+                    >Descrição do Orçamento:</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="descricaoOrcamento"
+                    name="descricaoOrcamento"
+                    style="height: 150px; resize: none"
+                    required
+                  ></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="formaDepagementoOrcamento" class="form-label"
+                    >Forma De Pagamento</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="formaDepagementoOrcamento"
+                    name="formaDepagementoOrcamento"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="valorOrcamento" class="form-label">Valor</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="valorOrcamento"
+                    name="valorOrcamento"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="razaoOrcamento" class="form-label"
+                    >Razão Social</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="razaoOrcamento"
+                    name="razaoOrcamento"
+                    value="Ramon Cell"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="enderecoOrcamento" class="form-label"
+                  >Endereço</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="enderecoOrcamento"
+                  name="enderecoOrcamento"
+                  value="Rua Jardim de Dom Pedro, número 24, Heliópolis, São Paulo - SP 04236-040"
+                  required
+                />
+              </div>
+
+              <div class="text-center">
+                <button
+                  type="button"
+                  class="btn btn-primary mx-2"
+                  id="orcamentoComprovante"
+                  onclick="gerarComprovanteClienteorcamento()"
+                >
+                  Gerar Comprovante
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary mx-2"
+                  data-bs-dismiss="modal"
+                >
+                  Fechar
+                </button>
+              </div>
+
+              <!-- Dados para Clientes guiasaidas -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para Fechamento de Caixa -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="responseModal"
+      tabindex="-1"
+      aria-labelledby="modalTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #212529">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">Mensagem</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="modalBody">
+            <!-- Mensagem será inserida aqui -->
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer mt-auto text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <!-- Informação de contato -->
+            <h5>Contato</h5>
+            <p>Endereço: Rua Jardim Dom Pedro, N°24</p>
+            <p>Email: ramoncellapp@gmail.com</p>
+            <p>Telefone: (11) 98527-0540</p>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col">
+            <p>&copy; 2024 Ramon Cell. Todos os direitos reservados.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS e dependências -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document
+        .getElementById("tipoGuia")
+        .addEventListener("change", function () {
+          var orcamentoFields = document.getElementById("orcamentoFields");
+
+          if (this.value === "orcamento") {
+            orcamentoFields.style.display = "block";
+            guiasaidaFields.style.display = "none";
+          } else if (this.value === "guiasaida") {
+            orcamentoFields.style.display = "none";
+            guiasaidaFields.style.display = "block";
+          }
+        });
+
+      function gerarComprovante() {
+        const tipoGuia = document.getElementById("tipoGuia").value;
+        if (tipoGuia === "orcamento") {
+          gerarComprovanteClienteorcamento();
+        }
+      }
+      //gerar comprovante alvulso
+      function gerarComprovanteClienteorcamento() {
+        const comprovante = document.getElementById(
+          "comprovanteOrcamento"
+        ).value;
+        const data = document.getElementById("dataOrcamento").value.trim();
+        const nome = document.getElementById("clienteOrcamento").value.trim();
+        const telefone = document
+          .getElementById("telefoneOrcamento")
+          .value.trim();
+        const cpf = document.getElementById("cpfOrcamento").value.trim();
+        const cep = document.getElementById("cepOrcamento").value.trim();
+        const rua = document.getElementById("ruaOrcamento").value.trim();
+        const numero = document.getElementById("numeroOrcamento").value.trim();
+        const bairro = document.getElementById("bairroOrcamento").value.trim();
+        const cidade = document.getElementById("cidadeOrcamento").value.trim();
+        const uf = document.getElementById("ufOrcamento").value.trim();
+        const descricao = document
+          .getElementById("descricaoOrcamento")
+          .value.trim();
+        const pagamento = document
+          .getElementById("formaDepagementoOrcamento")
+          .value.trim();
+        const valor = document.getElementById("valorOrcamento").value.trim();
+        const razao = document.getElementById("razaoOrcamento").value.trim();
+        const endereco = document
+          .getElementById("enderecoOrcamento")
+          .value.trim();
+
+        const comprovanteTxt = `Razão Social: Ramon Cell
+────────────────────────────────────────────
+Endereço: Rua Jardim de Dom Pedro, número 24,
+Heliópolis, São Paulo - SP 04236-040
+(11) 98527-0540
+ramoncellapp@gmail.com
+────────────────────────────────────────────
+Cód: ${comprovante}   Emissão: ${data}
+────────────────────────────────────────────
+Cliente: ${nome}
+Cpf: ${cpf}
+Rua: ${rua}   N°: ${numero}
+Bairro: ${bairro}   Cep: ${cep}
+Cidade: ${cidade}  UF: ${uf}
+────────────────────────────────────────────
+${descricao}
+────────────────────────────────────────────
+Forma de Pagamento: ${pagamento}
+Valor: ${valor}
+Sera avaliado a Condição do Produto se 
+aprescentar avarias por mal uso 
+a Garantia Não Sera Coberta, Apresente 
+Esse Cupon Para Ter Direito a Garantia
+`;
+
+        function obterDataAtual() {
+          const data = new Date();
+          const dia = String(data.getDate()).padStart(2, "0");
+          const mes = String(data.getMonth() + 1).padStart(2, "0"); // Janeiro é 0!
+          const ano = data.getFullYear();
+          return `${dia}/${mes}/${ano}`;
+        }
+
+        const dataAtual = obterDataAtual();
+
+        // Criação de um blob de texto
+        const blob = new Blob([comprovanteTxt], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+
+        // Criação do link de download
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "comprovante-orcamento.txt";
+        link.click();
+
+        // Limpeza do objeto URL
+        URL.revokeObjectURL(url);
+      }
+    </script>
+    <script>
+      function gerarComprovanteCaixaDoDia() {
+        // Coleta os dados do formulário
+        const data = document.getElementById("caixaDia").value.trim();
+        const despesas = document.getElementById("despesasDia").value.trim();
+        const lucros = document.getElementById("lucrosDia").value.trim();
+        const total = document.getElementById("totalDia").value.trim();
+
+        // Cria o texto do comprovante
+        const comprovanteTxt =
+          `Comprovante de Fechamento de Caixa\n\n` +
+          `Data: ${data}\n` +
+          `Despesas: ${despesas}\n` +
+          `Lucros: ${lucros}\n` +
+          `Total: ${total}\n`;
+
+        // Criação de um blob de texto
+        const blob = new Blob([comprovanteTxt], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+
+        // Criação do link de download
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "comprovante-fechamento-caixa.txt";
+        link.click();
+
+        // Limpeza do objeto URL
+        URL.revokeObjectURL(url);
+      }
+    </script>
+    <script>
+      //letras maisculas
+      document
+        .getElementById("clienteOrcamento")
+        .addEventListener("input", function () {
+          this.value = this.value.toUpperCase();
+        });
+      document
+        .getElementById("descricaoOrcamento")
+        .addEventListener("input", function () {
+          this.value = this.value.toUpperCase();
+        });
+      document
+        .getElementById("bairroOrcamento")
+        .addEventListener("input", function () {
+          this.value = this.value.toUpperCase();
+        });
+      document
+        .getElementById("ruaOrcamento")
+        .addEventListener("input", function () {
+          this.value = this.value.toUpperCase();
+        });
+      document
+        .getElementById("cidadeOrcamento")
+        .addEventListener("input", function () {
+          this.value = this.value.toUpperCase();
+        });
+      document
+        .getElementById("ufOrcamento")
+        .addEventListener("input", function () {
+          this.value = this.value.toUpperCase();
+        });
+    </script>
+
+    <script>
+      // Função para preencher o campo com o valor do localStorage
+      function preencherComprovante() {
+        // Obter o valor do localStorage
+        const comprovanteValue = localStorage.getItem("comprovante");
+
+        // Verificar se o valor existe e preencher o campo
+        if (comprovanteValue) {
+          document.getElementById("comprovanteOrcamento").value =
+            comprovanteValue;
+
+          // Limpar o valor do localStorage após o preenchimento, se desejado
+          // localStorage.removeItem('comprovante');
+        }
+      }
+
+      // Chamar a função quando a página for carregada
+      window.onload = preencherComprovante;
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const comprovanteOrcamento = localStorage.getItem(
+          "comprovanteOrcamento"
+        );
+
+        if (comprovanteOrcamento) {
+          // Preencher o campo
+          document.getElementById("comprovanteOrcamento").value =
+            comprovanteOrcamento;
+
+          // Abrir o modal
+          const modal = new bootstrap.Modal(
+            document.getElementById("comprovanteModal")
+          );
+          modal.show();
+
+          // Chamar a função de busca após o modal ser aberto
+          buscarOrcamentoPorNumero();
+        }
+
+        function buscarOrcamentoPorNumero() {
+          const numeroRegistro = document
+            .getElementById("comprovanteOrcamento")
+            .value.trim();
+
+          if (numeroRegistro) {
+            fetch(`http://127.0.0.1:5000/orcamento/${numeroRegistro}`)
+              .then((response) => response.json())
+              .then((data) => {
+                const modalTitle = document.getElementById("modalTitle");
+                const modalBody = document.getElementById("modalBody");
+                const myModal = new bootstrap.Modal(
+                  document.getElementById("responseModal")
+                );
+
+                if (data.numero_registro) {
+                  document.getElementById("dataOrcamento").value =
+                    data.data || "";
+                  document.getElementById("clienteOrcamento").value =
+                    data.nome_cliente || "";
+                  document.getElementById("telefoneOrcamento").value =
+                    data.telefone || "";
+                  document.getElementById("cpfOrcamento").value =
+                    data.cpf || "";
+                  document.getElementById("cepOrcamento").value =
+                    data.cep || "";
+                  document.getElementById("ruaOrcamento").value =
+                    data.endereco || "";
+                  document.getElementById("numeroOrcamento").value =
+                    data.numero || "";
+                  document.getElementById("bairroOrcamento").value =
+                    data.bairro || "";
+                  document.getElementById("cidadeOrcamento").value =
+                    data.cidade || "";
+                  document.getElementById("ufOrcamento").value = data.uf || "";
+                  document.getElementById("formaDepagementoOrcamento").value =
+                    data.forma_pagamento || "";
+
+                  // Formatar o valor do orçamento corretamente
+                  document.getElementById("valorOrcamento").value = data.valor
+                    ? `R$ ${parseFloat(data.valor.replace("R$", "").trim())
+                        .toFixed(2)
+                        .replace(".", ",")}`
+                    : "";
+
+                  // Formatar a descrição com o padrão desejado
+                  const descricaoFormatada = formatarDescricao(data.descricao);
+                  document.getElementById("descricaoOrcamento").value =
+                    descricaoFormatada;
+
+                  console.log("Dados do orçamento carregados:", data); // Log para depuração
+                  // Configurar o modal para mostrar a mensagem de sucesso
+                  modalTitle.textContent = "Sucesso";
+                  modalBody.textContent = "Orçamento carregado com sucesso!";
+                } else {
+                  console.log("Orçamento não encontrado!");
+                  // Configurar o modal para mostrar a mensagem de erro
+                  modalTitle.textContent = "Erro";
+                  modalBody.textContent = "Orçamento não encontrado!";
+                }
+
+                // Mostrar o modal
+                myModal.show();
+              })
+              .catch((error) => {
+                console.error("Erro ao buscar orçamento:", error);
+
+                // Configurar o modal para mostrar a mensagem de erro
+                const modalTitle = document.getElementById("modalTitle");
+                const modalBody = document.getElementById("modalBody");
+                const myModal = new bootstrap.Modal(
+                  document.getElementById("responseModal")
+                );
+
+                modalTitle.textContent = "Erro";
+                modalBody.textContent = "Erro ao buscar orçamento.";
+
+                // Mostrar o modal
+                myModal.show();
+              });
+          }
+        }
+      });
+
+      // Adicionar o evento de blur ao campo de número de registro para buscar o orçamento ao sair do campo
+      document
+        .getElementById("comprovanteOrcamento")
+        .addEventListener("blur", buscarOrcamentoPorNumero);
+
+      function formatarDescricao(descricao) {
+        // Retorna a descrição diretamente, assumindo que já está formatada corretamente
+        return descricao;
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Verifica se há um valor armazenado para o comprovante e preenche o campo se necessário
+        const comprovanteOrcamento = localStorage.getItem(
+          "comprovanteOrcamento"
+        );
+        if (comprovanteOrcamento) {
+          // Preencher o campo com o valor armazenado
+          document.getElementById("comprovanteOrcamento").value =
+            comprovanteOrcamento;
+
+          // Atualizar o campo de data e hora
+          atualizarDataHora();
+
+          // Abrir o modal
+          const modal = new bootstrap.Modal(
+            document.getElementById("comprovanteModal")
+          );
+          modal.show();
+
+          // Chamar a função de busca
+          buscarComprovante();
+        }
+      });
+
+      function atualizarDataHora() {
+        const dataHoraAtual = new Date();
+        const dia = String(dataHoraAtual.getDate()).padStart(2, "0");
+        const mes = String(dataHoraAtual.getMonth() + 1).padStart(2, "0"); // Mês começa em 0
+        const ano = String(dataHoraAtual.getFullYear()).slice(-2); // Últimos 2 dígitos do ano
+        const horas = String(dataHoraAtual.getHours()).padStart(2, "0");
+        const minutos = String(dataHoraAtual.getMinutes()).padStart(2, "0");
+
+        const dataHoraFormatada = `${dia}/${mes}/${ano} ${horas}:${minutos}`;
+        document.getElementById("dataOrcamento").value = dataHoraFormatada;
+      }
+
+      // Garantir que a data e hora sejam atualizadas ao abrir o modal
+      const modalElement = document.getElementById("comprovanteModal");
+      modalElement.addEventListener("shown.bs.modal", function () {
+        atualizarDataHora();
+      });
+    </script>
+    <script>
+      function redirectAfterClose() {
+        setTimeout(function () {
+          window.location.href = "./faturamento.html";
+        }, 1000); // 1000 milissegundos = 1 segundo
+      }
+    </script>
+  </body>
+</html>

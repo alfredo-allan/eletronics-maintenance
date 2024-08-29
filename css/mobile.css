@@ -1,0 +1,23 @@
+@media (max-width: 700px) {
+  #show-btn {
+    height: 30px;
+  }
+  .btn-comprovante,
+  .btn-caixa {
+    height: 30px;
+  }
+  #ctn-btn {
+    display: grid;
+    margin-left: 35px;
+    margin-right: 35px;
+    margin-top: 10px;
+    width: 160%;
+  }
+  #btn-mcaixa {
+    width: 80%;
+  }
+  #mdl-btn {
+    width: 50%;
+    margin: 0px 177px;
+  }
+}

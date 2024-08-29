@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Header Responsivo</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/mobile.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="navbar navbar-expand-lg navbar-light bg-dark">
+      <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">Electronics Maintenance</a>
+
+        <!-- Botão para telas menores -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          style="border: none"
+        >
+          <img src="../img/hamburger.png" alt="" style="width: 30px" />
+        </button>
+        <!-- Itens do menu -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="../index.html"
+                >Home</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="./areadocliente.html"
+                >Area Do Cliente</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Caixa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./faturamento.html">Faturamento</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Botão para abrir o modal, centralizado abaixo do header -->
+    <div class="d-flex justify-content-center mt-4">
+      <button
+        id="btn-mcaixa"
+        class="btn btn-primary"
+        onclick="abrirModalCaixaDoDia()"
+      >
+        Abrir Caixa
+      </button>
+    </div>
+
+    <!-- Modal Caixa do Dia -->
+    <div
+      class="modal fade"
+      id="caixaDoDiaModal"
+      tabindex="-1"
+      aria-labelledby="caixaDoDiaModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="caixaDoDiaModalLabel">
+              Fechamento de Caixa do Dia
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="caixaDoDiaForm">
+              <div class="mb-3">
+                <label for="caixaDia" class="form-label">Data</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="caixaDia"
+                  name="caixaDia"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="despesasDia" class="form-label">Despesas</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="despesasDia"
+                  name="despesasDia"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="lucrosDia" class="form-label">Lucros</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lucrosDia"
+                  name="lucrosDia"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="totalDia" class="form-label">Total</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="totalDia"
+                  name="totalDia"
+                  required
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer d-flex justify-content-center w-100">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="gerarComprovanteCaixa"
+              onclick="gerarComprovanteCaixaDoDia()"
+            >
+              Gerar Comprovante
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer mt-auto text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <!-- Informação de contato -->
+            <h5>Contato</h5>
+            <p>Endereço: Rua Jardim Dom Pedro, N°24</p>
+            <p>Email: ramoncellapp@gmail.com</p>
+            <p>Telefone: (11) 98527-0540</p>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col">
+            <p>&copy; 2024 Ramon Cell. Todos os direitos reservados.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Bootstrap JS e dependências -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function abrirModalCaixaDoDia() {
+        var caixaDoDiaModal = new bootstrap.Modal(
+          document.getElementById("caixaDoDiaModal")
+        );
+        caixaDoDiaModal.show();
+      }
+
+      function gerarComprovanteCaixaDoDia() {
+        const despesasDia = document.getElementById("despesasDia").value;
+        const lucrosDia = document.getElementById("lucrosDia").value;
+        const totalDia = document.getElementById("totalDia").value;
+
+        const caixaData = {
+          despesas: despesasDia,
+          lucros: lucrosDia,
+          total: totalDia,
+        };
+
+        console.log("Caixa do Dia:", caixaData);
+
+        const conteudoArquivo = `Fechamento de Caixa do Dia\n\nDespesas: ${despesasDia}\nLucros: ${lucrosDia}\nTotal: ${totalDia}`;
+
+        const blob = new Blob([conteudoArquivo], { type: "text/plain" });
+
+        const link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = "caixa.txt";
+        link.click();
+
+        window.URL.revokeObjectURL(link.href);
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const inputCaixaDia = document.getElementById("caixaDia");
+        if (inputCaixaDia) {
+          formatarDataAtual();
+
+          inputCaixaDia.addEventListener("input", function () {
+            clearTimeout(window.formatTimeout);
+            window.formatTimeout = setTimeout(
+              () => formatarDataCampo(this),
+              2000
+            );
+          });
+        }
+      });
+
+      function formatarDataAtual() {
+        const inputCaixaDia = document.getElementById("caixaDia");
+        if (!inputCaixaDia) {
+          console.error("Elemento com id 'caixaDia' não encontrado.");
+          return;
+        }
+
+        const dataAtual = new Date();
+        const dia = String(dataAtual.getDate()).padStart(2, "0");
+        const mes = String(dataAtual.getMonth() + 1).padStart(2, "0");
+        const ano = dataAtual.getFullYear();
+
+        const dataFormatada = `${dia}/${mes}/${ano}`;
+        inputCaixaDia.value = dataFormatada;
+      }
+
+      function formatarDataCampo(input) {
+        let valor = input.value;
+
+        valor = valor.replace(/\D/g, "");
+
+        if (valor.length > 8) {
+          valor = valor.slice(0, 8);
+        }
+
+        let dia = valor.slice(0, 2);
+        let mes = valor.slice(2, 4);
+        let ano = valor.slice(4, 8);
+
+        if (ano.length === 2) {
+          ano = "20" + ano;
+        }
+
+        if (ano.length === 4 && (ano < 1900 || ano > 2100)) {
+          alert("O ano deve estar entre 1900 e 2100.");
+          return;
+        }
+
+        if (dia) {
+          dia = dia.padStart(2, "0");
+        }
+
+        if (mes) {
+          mes = mes.padStart(2, "0");
+        }
+
+        input.value = `${dia}/${mes}/${ano}`;
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const inputCaixaDia = document.getElementById("caixaDia");
+
+        if (inputCaixaDia) {
+          formatarDataAtual();
+
+          inputCaixaDia.addEventListener("input", function () {
+            clearTimeout(window.fetchTimeout);
+            window.fetchTimeout = setTimeout(() => {
+              const dataFormatada = formatarDataParaURL(this.value);
+              if (dataFormatada) {
+                buscarDadosCaixa(dataFormatada);
+              }
+            }, 2000);
+          });
+        }
+      });
+
+      function formatarDataParaURL(data) {
+        let valor = data.replace(/\D/g, "");
+
+        if (valor.length < 8) return "";
+
+        let dia = valor.slice(0, 2);
+        let mes = valor.slice(2, 4);
+        let ano = valor.slice(4, 8);
+
+        if (ano.length === 2) {
+          ano = "20" + ano;
+        }
+
+        if (ano.length === 4 && (ano < 1900 || ano > 2100)) {
+          alert("O ano deve estar entre 1900 e 2100.");
+          return "";
+        }
+
+        return `${ano}-${mes}-${dia}`;
+      }
+
+      function buscarDadosCaixa(data) {
+        if (!data) return;
+
+        fetch(`http://127.0.0.1:5000/faturamento?data=${data}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Erro na resposta: ${response.statusText}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            if (data.length > 0) {
+              preencherCampos(data[0]);
+            }
+          })
+          .catch((error) =>
+            console.error("Erro ao buscar dados do caixa:", error)
+          );
+      }
+
+      function preencherCampos(dados) {
+        document.getElementById("despesasDia").value = `R$ ${dados.despesas}`;
+        document.getElementById("lucrosDia").value = `R$ ${dados.lucros}`;
+        document.getElementById("totalDia").value = `R$ ${dados.total}`;
+      }
+    </script>
+  </body>
+</html>

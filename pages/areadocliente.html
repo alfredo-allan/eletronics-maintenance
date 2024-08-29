@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Area Do Cliente</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/mobile.css" />
+    <style>
+      .hidden {
+        display: none;
+      }
+      @media (max-width: 700px) {
+        .col-md-3 {
+          margin: 0px 30px;
+        }
+      }
+      .modal-content {
+        background-color: #212529;
+        color: #f8f9fa;
+      }
+      .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+      }
+      .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+      }
+      .btn-close-secondary {
+        filter: invert(1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="navbar navbar-expand-lg navbar-light bg-dark">
+      <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">Electronics Maintenance</a>
+
+        <!-- Botão para telas menores -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          style="border: none"
+        >
+          <img src="../img/hamburger.png" alt="Menu" style="width: 30px" />
+        </button>
+
+        <!-- Itens do menu -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="../index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Área Do Cliente</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./faturamento.html">Faturamento</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./caixa.html">Caixa</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <div class="container mt-4">
+      <div class="row">
+        <!-- Coluna de botões -->
+        <div class="col-md-3">
+          <button id="show-btn" onclick="showView('formView')">
+            Cadastrar Cliente
+          </button>
+          <button id="show-btn" onclick="showView('otherView')">
+            Orçamento
+          </button>
+        </div>
+
+        <!-- Seções de conteúdo controladas pelos botões -->
+        <div class="col-md-9">
+          <div id="formView" class="hidden">
+            <h2 class="mb-4">Formulário de Cadastro</h2>
+            <form id="cds-cli">
+              <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nome"
+                  placeholder="Digite seu nome"
+                  name="nome"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="nome" class="form-label">Telefone</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  oninput="formatarTelefone(event)"
+                  id="telefone"
+                  placeholder="Digite seu Telefone"
+                  name="telefone"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="cpf" class="form-label">CPF</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  oninput="formatarCPF(event)"
+                  id="cpf"
+                  placeholder="Digite seu CPF"
+                  name="cpf"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="cep" class="form-label">CEP</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  oninput="formatarCEP(event)"
+                  id="cep"
+                  placeholder="Digite seu CEP"
+                  name="cep"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="endereco" class="form-label">Endereço</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="endereco"
+                  placeholder="Digite seu endereço"
+                  name="endereco"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="numero" class="form-label">Número</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="numero"
+                  placeholder="Número"
+                  name="numero"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="bairro" class="form-label">Bairro</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="bairro"
+                  placeholder="Digite seu bairro"
+                  name="bairro"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="cidade" class="form-label">Cidade</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cidade"
+                  placeholder="Digite sua cidade"
+                  name="cidade"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="uf" class="form-label">UF</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="uf"
+                  placeholder="UF"
+                  name="uf"
+                />
+              </div>
+              <button type="submit" id="btn">Enviar</button>
+            </form>
+          </div>
+          <!-- Formulario de envio do orçamento -->
+          <div id="otherView" class="hidden">
+            <h2 class="mb-4">Orcamento</h2>
+            <form id="cds-orc">
+              <div class="mb-3">
+                <label for="comprovanteOrcamento" class="form-label"
+                  >Numero de Registro</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="comprovanteOrcamento"
+                  name="comprovanteOrcamento"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="clienteOrcamento" class="form-label">Nome</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="clienteOrcamento"
+                  placeholder="Digite o Nome Do Cliente"
+                  name="clienteOrcamento"
+                />
+              </div>
+              <div class="mb-3" hidden>
+                <label for="telefone" class="form-label">Telefone</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  oninput="formatarTelefone(event)"
+                  id="telefone"
+                  placeholder="Digite seu Telefone"
+                  name="telefone"
+                />
+              </div>
+              <div class="mb-3" hidden>
+                <label for="cpf" class="form-label">CPF</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  oninput="formatarCPF(event)"
+                  id="cpf"
+                  placeholder="Digite seu CPF"
+                  name="cpf"
+                />
+              </div>
+              <div class="mb-3" hidden>
+                <label for="cep" class="form-label">CEP</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  oninput="formatarCEP(event)"
+                  id="cep"
+                  placeholder="Digite seu CEP"
+                  name="cep"
+                />
+              </div>
+              <div class="mb-3" hidden>
+                <label for="endereco" class="form-label">Endereço</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="endereco"
+                  placeholder="Digite seu endereço"
+                  name="endereco"
+                />
+              </div>
+              <div class="mb-3" hidden>
+                <label for="numero" class="form-label">Número</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="numero"
+                  placeholder="Número"
+                  name="numero"
+                />
+              </div>
+              <div class="mb-3" hidden>
+                <label for="bairro" class="form-label">Bairro</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="bairro"
+                  placeholder="Digite seu bairro"
+                  name="bairro"
+                />
+              </div>
+              <div class="mb-3" hidden>
+                <label for="cidade" class="form-label">Cidade</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cidade"
+                  placeholder="Digite sua cidade"
+                  name="cidade"
+                />
+              </div>
+              <div class="mb-3" hidden>
+                <label for="uf" class="form-label">UF</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="uf"
+                  placeholder="UF"
+                  name="uf"
+                />
+              </div>
+              <div class="form-group">
+                <label for="descricaoOrcamento">Descrição do Orçamento:</label>
+                <textarea
+                  class="form-control"
+                  id="descricaoOrcamento"
+                  name="descricaoOrcamento"
+                  style="height: 150px; resize: none"
+                  required=""
+                  placeholder="Descrição        QTD              Total"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="formaDepagementoOrcamento" class="form-label"
+                  >Forma De Pagamento</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="formaDepagementoOrcamento"
+                  name="formaDepagementoOrcamento"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="valorOrcamento" class="form-label">Valor</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="valorOrcamento"
+                  name="valorOrcamento"
+                  required=""
+                />
+              </div>
+              <button type="submit" id="btn">Enviar</button>
+              <button type="submit" id="btn-imprimir" style="margin-left: 20px">
+                Imprimir
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="footer mt-auto text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <!-- Informação de contato -->
+            <h5>Contato</h5>
+            <p>Endereço: Rua Jardim Dom Pedro, N°24</p>
+            <p>Email: ramoncellapp@gmail.com</p>
+            <p>Telefone: (11) 98527-0540</p>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col">
+            <p>&copy; 2024 Ramon Cell. Todos os direitos reservados.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="responseModal"
+      tabindex="-1"
+      aria-labelledby="responseModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">
+              Cliente Salvo com Sucesso
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-secondary"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="modalBody">Cliente Salvo!</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS e dependências -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function showView(viewId) {
+        // Ocultar todas as views
+        document.querySelectorAll(".col-md-9 > div").forEach(function (div) {
+          div.classList.add("hidden");
+        });
+
+        // Exibir a view selecionada
+        document.getElementById(viewId).classList.remove("hidden");
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("cds-cli");
+        const modal = new bootstrap.Modal(
+          document.getElementById("responseModal")
+        );
+        const modalTitle = document.getElementById("modalTitle");
+        const modalBody = document.getElementById("modalBody");
+
+        form.addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          // Coletando dados do formulário
+          const formData = new FormData(form);
+          const data = {};
+          formData.forEach((value, key) => {
+            data[key] = value;
+          });
+
+          console.log("Dados do formulário:", data); // Verifica os dados antes de enviar
+
+          try {
+            const response = await fetch(
+              "http://127.0.0.1:5000/cadastro_cliente",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+              }
+            );
+
+            console.log("Resposta do servidor:", response); // Verifica a resposta do servidor
+
+            if (response.ok) {
+              modalTitle.textContent = "Sucesso";
+              modalBody.textContent = "Cliente cadastrado com sucesso!";
+              modal.show();
+            } else {
+              const errorMessage = await response.text();
+              modalTitle.textContent = "Erro";
+              modalBody.textContent = `Houve um erro ao cadastrar o cliente: ${errorMessage}`;
+              modal.show();
+            }
+          } catch (error) {
+            console.error("Erro ao enviar dados:", error);
+            modalTitle.textContent = "Erro";
+            modalBody.textContent = "Houve um erro ao cadastrar o cliente.";
+            modal.show();
+          }
+        });
+      });
+
+      //formatar entrada telefone
+      function formatarTelefone(event) {
+        const input = event.target;
+        let valor = input.value.replace(/\D/g, ""); // Remove todos os caracteres que não são dígitos
+
+        if (valor.length > 11) {
+          valor = valor.slice(0, 11); // Limita a 11 dígitos
+        }
+
+        if (valor.length > 0) {
+          valor = "(" + valor;
+        }
+        if (valor.length > 3) {
+          valor = valor.slice(0, 3) + ") " + valor.slice(3);
+        }
+        if (valor.length > 10) {
+          valor = valor.slice(0, 10) + " " + valor.slice(10);
+        }
+        if (valor.length > 16) {
+          valor = valor.slice(0, 16) + "-" + valor.slice(16);
+        }
+
+        input.value = valor; // Atualiza o valor no campo de input
+      }
+    </script>
+    <script>
+      //formatar cpf
+      function formatarCPF(event) {
+        const input = event.target;
+        let valor = input.value.replace(/\D/g, ""); // Remove todos os caracteres que não são dígitos
+
+        if (valor.length > 11) {
+          valor = valor.slice(0, 11); // Limita a 11 dígitos
+        }
+
+        if (valor.length > 3) {
+          valor = valor.slice(0, 3) + "." + valor.slice(3);
+        }
+        if (valor.length > 7) {
+          valor = valor.slice(0, 7) + "." + valor.slice(7);
+        }
+        if (valor.length > 11) {
+          valor = valor.slice(0, 11) + "-" + valor.slice(11);
+        }
+
+        input.value = valor; // Atualiza o valor no campo de input
+      }
+    </script>
+    <script>
+      //formatar cep
+      function formatarCEP(event) {
+        const input = event.target;
+        let valor = input.value.replace(/\D/g, ""); // Remove todos os caracteres que não são dígitos
+
+        if (valor.length > 8) {
+          valor = valor.slice(0, 8); // Limita a 8 dígitos
+        }
+
+        if (valor.length > 5) {
+          valor = valor.slice(0, 5) + "-" + valor.slice(5);
+        }
+
+        input.value = valor; // Atualiza o valor no campo de input
+      }
+    </script>
+    <script>
+      //converter inputs letras maisculas
+      document.getElementById("nome").addEventListener("input", function () {
+        this.value = this.value.toUpperCase();
+      });
+      document
+        .getElementById("clienteOrcamento")
+        .addEventListener("input", function () {
+          this.value = this.value.toUpperCase();
+        });
+    </script>
+    <script>
+      // Função debounce para evitar múltiplas requisições enquanto o usuário está digitando
+      function debounce(func, wait) {
+        let timeout;
+        return function (...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      }
+
+      // Função para buscar cliente pelo nome
+      // Função para buscar cliente pelo nome
+      const buscarCliente = debounce(function () {
+        const nome = document
+          .getElementById("clienteOrcamento")
+          .value.trim()
+          .toUpperCase();
+        if (nome) {
+          fetch(
+            `http://127.0.0.1:5000/cadastro_cliente/${encodeURIComponent(nome)}`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              const modalTitle = document.getElementById("modalTitle");
+              const modalBody = document.getElementById("modalBody");
+              const myModal = new bootstrap.Modal(
+                document.getElementById("responseModal")
+              );
+
+              if (data.nome) {
+                // Preencher os campos com os dados recebidos
+                document.getElementById("telefone").value = data.telefone;
+                document.getElementById("cpf").value = data.cpf;
+                document.getElementById("cep").value = data.cep;
+                document.getElementById("endereco").value = data.endereco;
+                document.getElementById("numero").value = data.numero;
+                document.getElementById("bairro").value = data.bairro;
+                document.getElementById("cidade").value = data.cidade;
+                document.getElementById("uf").value = data.uf;
+
+                // Configurar o modal para sucesso
+                modalTitle.textContent = "Sucesso";
+                modalBody.textContent = "Cliente encontrado!";
+              } else {
+                // Configurar o modal para erro
+                modalTitle.textContent = "Erro";
+                modalBody.textContent = "Cliente não encontrado!";
+              }
+
+              // Mostrar o modal
+              myModal.show();
+            })
+            .catch((error) => {
+              console.error("Erro ao buscar cliente:", error);
+
+              // Configurar o modal para erro
+              const modalTitle = document.getElementById("modalTitle");
+              const modalBody = document.getElementById("modalBody");
+              const myModal = new bootstrap.Modal(
+                document.getElementById("responseModal")
+              );
+              modalTitle.textContent = "Erro";
+              modalBody.textContent = "Erro ao buscar cliente!";
+              myModal.show();
+            });
+        }
+      }, 2000);
+
+      // Aguarda 500ms depois do usuário parar de digitar
+
+      document
+        .getElementById("clienteOrcamento")
+        .addEventListener("input", buscarCliente);
+
+      // Carregar número de registro automaticamente
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("http://127.0.0.1:5000/obter_numero_registro")
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("comprovanteOrcamento").value = data.numero;
+          })
+          .catch((error) =>
+            console.error("Erro ao carregar número de registro:", error)
+          );
+      });
+
+      // Enviar formulário via AJAX para rota '/orcamento'
+      document
+        .getElementById("cds-orc")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // Criar um objeto FormData manualmente
+          const formData = new FormData();
+
+          // Adicionar todos os campos manualmente
+          formData.append(
+            "comprovanteOrcamento",
+            document.getElementById("comprovanteOrcamento").value
+          );
+          formData.append(
+            "clienteOrcamento",
+            document.getElementById("clienteOrcamento").value
+          );
+          formData.append(
+            "telefone",
+            document.getElementById("telefone").value
+          );
+          formData.append("cpf", document.getElementById("cpf").value);
+          formData.append("cep", document.getElementById("cep").value);
+          formData.append(
+            "endereco",
+            document.getElementById("endereco").value
+          );
+          formData.append("numero", document.getElementById("numero").value);
+          formData.append("bairro", document.getElementById("bairro").value);
+          formData.append("cidade", document.getElementById("cidade").value);
+          formData.append("uf", document.getElementById("uf").value);
+          formData.append(
+            "descricaoOrcamento",
+            document.getElementById("descricaoOrcamento").value
+          );
+          formData.append(
+            "formaDepagementoOrcamento",
+            document.getElementById("formaDepagementoOrcamento").value
+          );
+          formData.append(
+            "valorOrcamento",
+            document.getElementById("valorOrcamento").value
+          );
+
+          const data = Object.fromEntries(formData.entries());
+
+          // Adicione este console.log para verificar os dados que estão sendo enviados
+          console.log("Dados enviados:", data);
+
+          fetch("http://127.0.0.1:5000/orcamento", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Resposta do servidor:", data);
+
+              // Configurar o modal para mostrar a mensagem
+              const modalTitle = document.getElementById("modalTitle");
+              const modalBody = document.getElementById("modalBody");
+              const myModal = new bootstrap.Modal(
+                document.getElementById("responseModal")
+              );
+
+              // Definir título e corpo do modal
+              modalTitle.textContent = "Sucesso";
+              modalBody.textContent = "Orçamento salvo com sucesso!";
+
+              // Mostrar o modal
+              myModal.show();
+            })
+            .catch((error) => {
+              console.error("Erro ao enviar o formulário:", error);
+
+              // Configurar o modal para mostrar a mensagem de erro
+              const modalTitle = document.getElementById("modalTitle");
+              const modalBody = document.getElementById("modalBody");
+              const myModal = new bootstrap.Modal(
+                document.getElementById("responseModal")
+              );
+
+              // Definir título e corpo do modal
+              modalTitle.textContent = "Erro";
+              modalBody.textContent = "Erro ao salvar o orçamento.";
+
+              // Mostrar o modal
+              myModal.show();
+            });
+        });
+    </script>
+    <script>
+      // Formatando campo do valor
+      document
+        .getElementById("valorOrcamento")
+        .addEventListener("input", function (event) {
+          // Remove todos os caracteres não numéricos
+          let value = event.target.value.replace(/[^0-9]/g, "");
+
+          // Converte para número e formata sem separador de milhar e com separador decimal
+          if (value) {
+            value = (parseFloat(value) / 100).toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+              useGrouping: false, // Remove o separador de milhar
+            });
+          } else {
+            value = "R$ 0,00";
+          }
+
+          // Atualiza o campo com a formatação
+          event.target.value = value;
+        });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("descricaoOrcamento")
+          .addEventListener("input", function () {
+            const textarea = this;
+            const lines = textarea.value.split("\n");
+
+            // Cabeçalhos das colunas sem a coluna "PREÇO"
+            const headers = "DESCRIÇÃO          QTD           TOTAL";
+
+            // Verifica se o cabeçalho está presente na primeira linha
+            if (!lines[0].includes("DESCRIÇÃO")) {
+              lines.unshift(headers); // Adiciona os cabeçalhos ao início
+            } else {
+              lines[0] = headers; // Garante que os cabeçalhos permaneçam intactos
+            }
+
+            // Junta as linhas de volta e define o valor do textarea
+            textarea.value = lines.join("\n");
+          });
+
+        // Função para formatar automaticamente as entradas de cada linha
+        document
+          .getElementById("descricaoOrcamento")
+          .addEventListener("blur", function () {
+            const textarea = this;
+            const lines = textarea.value.split("\n");
+
+            const headers = "DESCRIÇÃO          QTD           TOTAL";
+            const formattedLines = [headers]; // Recomeça com os cabeçalhos
+
+            // Percorre as linhas ignorando os cabeçalhos
+            for (let i = 1; i < lines.length; i++) {
+              const line = lines[i].trim().toUpperCase(); // Converte a linha para maiúsculas
+              if (line === "") continue; // Ignora linhas vazias
+
+              const parts = line.split(/\s+/); // Divide por espaços
+
+              // Formata cada linha com espaçamento adicional
+              const descricao = parts[0] || "";
+              const qtd = parts[1] || "1";
+              const total = parts[2]
+                ? `R$ ${parseFloat(parts[2].replace(",", "."))
+                    .toFixed(2)
+                    .replace(".", ",")}`
+                : "R$ 0,00";
+
+              const formattedLine = `${descricao.padEnd(20)}${qtd.padEnd(
+                15
+              )}${total.padEnd(20)}`;
+              formattedLines.push(formattedLine);
+            }
+
+            // Atualiza o textarea com as linhas formatadas
+            textarea.value = formattedLines.join("\n");
+          });
+
+        // Abre o modal automaticamente ao carregar a página
+        const modal = new bootstrap.Modal(
+          document.getElementById("comprovanteModal")
+        );
+        modal.show();
+      });
+    </script>
+    <script>
+      // Função para salvar o número do comprovante no armazenamento local e navegar para outra página
+      function imprimirOrcamento() {
+        const comprovanteOrcamento = document
+          .getElementById("comprovanteOrcamento")
+          .value.trim();
+
+        if (comprovanteOrcamento) {
+          // Salvar o valor no armazenamento local
+          localStorage.setItem("comprovanteOrcamento", comprovanteOrcamento);
+
+          // Navegar para a página orcamento.html
+          window.location.href = "orcamento.html";
+        }
+      }
+
+      // Adicionar evento ao botão "Imprimir"
+      document
+        .getElementById("btn-imprimir")
+        .addEventListener("click", imprimirOrcamento);
+    </script>
+  </body>
+</html>
