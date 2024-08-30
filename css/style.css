@@ -154,6 +154,8 @@ html {
 
 .modal-content {
   background-color: #212529;
+  letter-spacing: 2px;
+    font-weight: 200;
 }
 
 #tipoGuia {

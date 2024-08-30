@@ -605,7 +605,7 @@ Esse Cupon Para Ter Direito a Garantia
             .value.trim();
 
           if (numeroRegistro) {
-            fetch(`https://ramoncellapp.pythonanywhere.com/orcamento/${numeroRegistro}`)
+            fetch(` http://10.0.0.104:5000/orcamento/${numeroRegistro}`)
               .then((response) => response.json())
               .then((data) => {
                 const modalTitle = document.getElementById("modalTitle");
@@ -719,22 +719,39 @@ Esse Cupon Para Ter Direito a Garantia
       });
 
       function atualizarDataHora() {
-        const dataHoraAtual = new Date();
-        const dia = String(dataHoraAtual.getDate()).padStart(2, "0");
-        const mes = String(dataHoraAtual.getMonth() + 1).padStart(2, "0"); // Mês começa em 0
-        const ano = String(dataHoraAtual.getFullYear()).slice(-2); // Últimos 2 dígitos do ano
-        const horas = String(dataHoraAtual.getHours()).padStart(2, "0");
-        const minutos = String(dataHoraAtual.getMinutes()).padStart(2, "0");
+    // Cria um objeto de data para a data e hora atual
+    const dataHoraAtual = new Date();
+    
+    // Formata a data e hora para o fuso horário de Brasília
+    const options = {
+        timeZone: 'America/Sao_Paulo',
+        day: '2-digit',
+        month: '2-digit',
+        year: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false // Usa o formato de 24 horas
+    };
+    
+    // Cria um formatador de data e hora com as opções especificadas
+    const formatter = new Intl.DateTimeFormat('pt-BR', options);
+    
+    // Obtém a string formatada da data e hora
+    const [dia, mes, ano, horas, minutos] = formatter.formatToParts(dataHoraAtual)
+        .reduce((acc, part) => {
+            if (part.type === 'day') acc[0] = part.value;
+            if (part.type === 'month') acc[1] = part.value;
+            if (part.type === 'year') acc[2] = part.value;
+            if (part.type === 'hour') acc[3] = part.value;
+            if (part.type === 'minute') acc[4] = part.value;
+            return acc;
+        }, ['00', '00', '00', '00', '00']);
+    
+    // Formata a data e hora
+    const dataHoraFormatada = `${dia}/${mes}/${ano} ${horas}:${minutos}`;
+    document.getElementById("dataOrcamento").value = dataHoraFormatada;
+}
 
-        const dataHoraFormatada = `${dia}/${mes}/${ano} ${horas}:${minutos}`;
-        document.getElementById("dataOrcamento").value = dataHoraFormatada;
-      }
-
-      // Garantir que a data e hora sejam atualizadas ao abrir o modal
-      const modalElement = document.getElementById("comprovanteModal");
-      modalElement.addEventListener("shown.bs.modal", function () {
-        atualizarDataHora();
-      });
     </script>
     <script>
       function redirectAfterClose() {
