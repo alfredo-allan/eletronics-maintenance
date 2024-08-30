@@ -605,7 +605,7 @@ Esse Cupon Para Ter Direito a Garantia
             .value.trim();
 
           if (numeroRegistro) {
-            fetch(`http://127.0.0.1:5000/orcamento/${numeroRegistro}`)
+            fetch(`https://ramoncellapp.pythonanywhere.com/orcamento/${numeroRegistro}`)
               .then((response) => response.json())
               .then((data) => {
                 const modalTitle = document.getElementById("modalTitle");

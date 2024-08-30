@@ -318,7 +318,7 @@
       function buscarDadosCaixa(data) {
         if (!data) return;
 
-        fetch(`http://127.0.0.1:5000/faturamento?data=${data}`)
+        fetch(`https://ramoncellapp.pythonanywhere.com/faturamento?data=${data}`)
           .then((response) => {
             if (!response.ok) {
               throw new Error(`Erro na resposta: ${response.statusText}`);

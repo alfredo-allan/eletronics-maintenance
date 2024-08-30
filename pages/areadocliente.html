@@ -439,7 +439,7 @@
 
           try {
             const response = await fetch(
-              "http://127.0.0.1:5000/cadastro_cliente",
+              "https://ramoncellapp.pythonanywhere.com/cadastro_cliente",
               {
                 method: "POST",
                 headers: {
@@ -569,7 +569,7 @@
           .toUpperCase();
         if (nome) {
           fetch(
-            `http://127.0.0.1:5000/cadastro_cliente/${encodeURIComponent(nome)}`
+            `https://ramoncellapp.pythonanywhere.com/cadastro_cliente/${encodeURIComponent(nome)}`
           )
             .then((response) => response.json())
             .then((data) => {
@@ -626,7 +626,7 @@
 
       // Carregar número de registro automaticamente
       document.addEventListener("DOMContentLoaded", function () {
-        fetch("http://127.0.0.1:5000/obter_numero_registro")
+        fetch("https://ramoncellapp.pythonanywhere.com/obter_numero_registro")
           .then((response) => response.json())
           .then((data) => {
             document.getElementById("comprovanteOrcamento").value = data.numero;
@@ -686,7 +686,7 @@
           // Adicione este console.log para verificar os dados que estão sendo enviados
           console.log("Dados enviados:", data);
 
-          fetch("http://127.0.0.1:5000/orcamento", {
+          fetch("https://ramoncellapp.pythonanywhere.com/orcamento", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

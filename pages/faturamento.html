@@ -308,7 +308,7 @@
     <!-- Adicionando o JavaScript -->
     <script>
       function fetchData() {
-        fetch("http://127.0.0.1:5000/caixa")
+        fetch("https://ramoncellapp.pythonanywhere.com/caixa")
           .then((response) => response.json())
           .then((data) => {
             const tableBody = document.getElementById("caixa-table-body");
@@ -373,7 +373,7 @@
           .getElementById("confirmDelete")
           .getAttribute("data-numero_comprovante");
 
-        fetch("http://127.0.0.1:5000/caixa", {
+        fetch("https://ramoncellapp.pythonanywhere.com/caixa", {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -435,7 +435,7 @@
             const formattedData = getFormattedDate();
 
             // Enviar a requisição POST
-            fetch("http://127.0.0.1:5000/caixa", {
+            fetch("https://ramoncellapp.pythonanywhere.com/caixa", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -490,7 +490,7 @@
       document
         .getElementById("calcularFechamento")
         .addEventListener("click", function () {
-          fetch("http://127.0.0.1:5000/caixa")
+          fetch("https://ramoncellapp.pythonanywhere.com/caixa")
             .then((response) => response.json())
             .then((data) => {
               let lucros = 0;
@@ -536,7 +536,7 @@
               )}`;
 
               // Enviar os dados para a rota faturamento
-              fetch("http://127.0.0.1:5000/faturamento", {
+              fetch("https://ramoncellapp.pythonanywhere.com/faturamento", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
